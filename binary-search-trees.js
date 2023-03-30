@@ -75,6 +75,19 @@ function find(root, value) {
     return value > root.val ? find(root.right, value) : find(root.left, value);
 }
 
+// LevelOrder function traverses through a tree in BFS way and returns an array with the node values by level
+function levelOrder(root) {
+    let queue = [root];
+    let result = [];
+    while (queue.length > 0) {
+        let current = queue.shift();
+        result.push(current.val);
+        if (current.left !== null) queue.push(current.left);
+        if (current.right !== null) queue.push(current.right);
+    }
+    return result;
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
