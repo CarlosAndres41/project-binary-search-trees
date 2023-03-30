@@ -68,6 +68,13 @@ function getMin(root) {
     return Math.min(root.val, leftMin, rightMin);
 }
 
+function find(root, value) {
+    // Returns node if found, returns null if not
+    if (root === null) return null;
+    if (root.val === value) return root;
+    return value > root.val ? find(root.right, value) : find(root.left, value);
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
