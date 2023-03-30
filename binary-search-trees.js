@@ -19,4 +19,13 @@ const buildTree = (array) => {
     });
     console.log(filteredArray);
     let root = new Node(filteredArray.shift());
+    let queue = [root];
+    while (filteredArray.length > 0) {
+        let current = queue.shift();
+        current.left = new Node(filteredArray.shift());
+        current.right = new Node(filteredArray.shift());
+        queue.push(current.left);
+        queue.push(current.right);
+    }
+    return root;
 };
