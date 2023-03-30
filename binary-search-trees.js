@@ -97,6 +97,14 @@ function inOrder(root) {
     return [...leftValues, root.val, ...rightValues];
 }
 
+// preOrder function returns the root node followed by all left items and then right items
+function preOrder(root) {
+    if (root === null) return [];
+    const leftValues = preOrder(root.left);
+    const rightValues = preOrder(root.right);
+    return [root.val, ...leftValues, ...rightValues];
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
