@@ -49,8 +49,23 @@ function deleteValue(root, value) {
             return root;
         } else {
             // node has 2 children
+            // get the minimum value of node's right branch:
+            let min = new Node(getMin(root.right));
+            let childrenR = root.right;
+            let childrenL = root.left;
+            deleteValue(childrenR, min.val);
+            min.right = childrenR;
+            min.left = childrenL;
+            return min;
         }
     }
+}
+
+function getMin(root) {
+    if (root === null) return Infinity;
+    const leftMin = getMin(root.left);
+    const rightMin = getMin(root.right);
+    return Math.min(root.val, leftMin, rightMin);
 }
 
 //This function will expect to receive the root of your tree as the value for the node parameter.
