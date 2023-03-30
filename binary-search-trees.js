@@ -13,22 +13,22 @@ class Tree {
 }
 
 const buildTree = (array) => {
-    let filteredArray = [...new Set(array)];
-    filteredArray.sort((a, b) => {
-        return a < b ? -1 : 1;
+    let filteredArr = [...new Set(array)];
+    console.log(filteredArr);
+    let root = new Node(filteredArr.shift());
+    filteredArr.forEach((value) => {
+        console.log(value);
+        insertValue(root, value);
     });
-    console.log(filteredArray);
-    let root = new Node(filteredArray.shift());
-    let queue = [root];
-    while (filteredArray.length > 0) {
-        let current = queue.shift();
-        current.left = new Node(filteredArray.shift());
-        current.right = new Node(filteredArray.shift());
-        queue.push(current.left);
-        queue.push(current.right);
-    }
     return root;
 };
+
+function insertValue(root, value) {
+    if (root === null) root = new Node(value);
+    if (value < root.val) root.left = insertValue(root.left, value);
+    if (value > root.val) root.right = insertValue(root.right, value);
+    return root;
+}
 
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
