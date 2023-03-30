@@ -88,7 +88,7 @@ function levelOrder(root) {
     return result;
 }
 
-// Inorder function returns the foremost left node then its root and then root.right
+// Inorder function returns the foremost left node then its root and then its sibling
 function inOrder(root) {
     // base case: empty tree
     if (root === null) return [];
@@ -103,6 +103,14 @@ function preOrder(root) {
     const leftValues = preOrder(root.left);
     const rightValues = preOrder(root.right);
     return [root.val, ...leftValues, ...rightValues];
+}
+
+// Inorder function returns the foremost left node then its sibling and its root
+function postOrder(root) {
+    if (root === null) return [];
+    let leftValues = postOrder(root.left);
+    let rightValues = postOrder(root.right);
+    return [...leftValues, ...rightValues, root.val];
 }
 
 //This function will expect to receive the root of your tree as the value for the node parameter.
