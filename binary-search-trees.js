@@ -28,6 +28,31 @@ function insertValue(root, value) {
     return root;
 }
 
+function deleteValue(root, value) {
+    if (root === null) return null;
+    // Value is greater than root.val, go right
+    if (value > root.val) {
+        root.right = deleteValue(root.right, value);
+        return root;
+        // Else go left
+    } else if (value < root.val) {
+        root.left = deleteValue(root.left, value);
+        return root;
+        // Else, if root.val === value:
+    } else {
+        // First two cases: node to be deleted is a leaf or has 1 chiild:
+        if (root.left === null) {
+            root = root.right;
+            return root;
+        } else if (root.right === null) {
+            root = root.left;
+            return root;
+        } else {
+            // node has 2 children
+        }
+    }
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
