@@ -14,10 +14,8 @@ class Tree {
 
 const buildTree = (array) => {
     let filteredArr = [...new Set(array)];
-    console.log(filteredArr);
     let root = new Node(filteredArr.shift());
     filteredArr.forEach((value) => {
-        console.log(value);
         insertValue(root, value);
     });
     return root;
