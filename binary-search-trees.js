@@ -88,6 +88,15 @@ function levelOrder(root) {
     return result;
 }
 
+// Inorder function returns the foremost left node then its root and then root.right
+function inOrder(root) {
+    // base case: empty tree
+    if (root === null) return [];
+    const leftValues = inOrder(root.left);
+    const rightValues = inOrder(root.right);
+    return [...leftValues, root.val, ...rightValues];
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
