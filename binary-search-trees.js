@@ -120,6 +120,13 @@ function height(root) {
     return Math.max(right, left) + 1;
 }
 
+function depth(node, root) {
+    if (root === null) return 0;
+    if (node > root.val) return 1 + depth(node, root.right);
+    if (node < root.val) return 1 + depth(node, root.left);
+    return 0;
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
