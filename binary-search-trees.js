@@ -113,6 +113,13 @@ function postOrder(root) {
     return [...leftValues, ...rightValues, root.val];
 }
 
+function height(root) {
+    if (root === null) return 0;
+    let right = height(root.right);
+    let left = height(root.left);
+    return Math.max(right, left) + 1;
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
