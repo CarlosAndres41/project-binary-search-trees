@@ -166,3 +166,29 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
         prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
     }
 };
+
+// Script
+
+function randomArr(len) {
+    let arr = [];
+    for (let i = 0; i < len; i++) {
+        arr.push(Math.floor(Math.random() * 1000));
+    }
+    return arr;
+}
+
+let array = randomArr(11);
+let tree = new Tree(array);
+prettyPrint(tree.root);
+console.log(isBalanced(tree.root));
+console.log(inOrder(tree.root));
+console.log(preOrder(tree.root));
+console.log(postOrder(tree.root));
+
+for (let i = 0; i < 120; i++) {
+    let value = Math.floor(Math.random() * 1000);
+    insertValue(tree.root, value);
+}
+
+console.log(isBalanced(tree.root));
+console.log(inOrder(tree.root));
