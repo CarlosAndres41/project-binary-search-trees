@@ -138,6 +138,20 @@ function isBalanced(root) {
         : false;
 }
 
+function rebalance(root) {
+    const newArr = preOrder(root);
+    let newRoot = new Node(newArr.shift());
+    let queue = [newRoot];
+    while (newArr.length > 0) {
+        let current = queue.shift();
+        current.left = new Node(newArr.shift());
+        current.right = new Node(newArr.shift());
+        queue.push(current.left);
+        queue.push(current.right);
+    }
+    return newRoot;
+}
+
 //This function will expect to receive the root of your tree as the value for the node parameter.
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
