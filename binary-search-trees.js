@@ -133,7 +133,7 @@ function depth(node, root) {
 function isBalanced(root) {
     let rightHeight = height(root.right);
     let leftHeight = height(root.left);
-    return rightHeight - leftHeight === 1 || leftHeight - rightHeight === 1
+    return rightHeight - leftHeight <= 1 || leftHeight - rightHeight <= 1
         ? true
         : false;
 }
