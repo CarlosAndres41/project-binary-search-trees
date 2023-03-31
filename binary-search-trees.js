@@ -113,6 +113,7 @@ function postOrder(root) {
     return [...leftValues, ...rightValues, root.val];
 }
 
+// Height is defined as the number of edges in longest path from a given node to a leaf node.
 function height(root) {
     if (root === null) return 0;
     let right = height(root.right);
@@ -120,11 +121,21 @@ function height(root) {
     return Math.max(right, left) + 1;
 }
 
+// Depth is defined as the number of edges in path from a given node to the tree’s root node.
 function depth(node, root) {
     if (root === null) return 0;
     if (node > root.val) return 1 + depth(node, root.right);
     if (node < root.val) return 1 + depth(node, root.left);
     return 0;
+}
+
+// A balanced tree is one where the difference between heights of left subtree and right subtree of every node is not more than 1.
+function isBalanced(root) {
+    let rightHeight = height(root.right);
+    let leftHeight = height(root.left);
+    return rightHeight - leftHeight === 1 || leftHeight - rightHeight === 1
+        ? true
+        : false;
 }
 
 //This function will expect to receive the root of your tree as the value for the node parameter.
